@@ -7,6 +7,9 @@ metadata:
     {{- include "supabase.labels" . | nindent 4 }}
 data:
   index.ts: |
+    {{- if .Values.customRootFunction }}
+    {{ .Values.customRootFunction | nindent 4 }}
+    {{- else }}
     import { serve } from 'https://deno.land/std@0.131.0/http/server.ts'
     import * as jose from 'https://deno.land/x/jose@v4.14.4/index.ts'
 
@@ -101,4 +104,5 @@ data:
         })
       }
     })
+    {{- end }}
 {{- end }}
