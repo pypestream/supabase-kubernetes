@@ -8,7 +8,7 @@ metadata:
 data:
   index.ts: |
     {{- if .Values.functions.customRootFunction }}
-    {{ .Values.customRootFunction | nindent 4 }}
+    {{ .Values.functions.customRootFunction | nindent 4 }}
     {{- else }}
     import { serve } from 'https://deno.land/std@0.131.0/http/server.ts'
     import * as jose from 'https://deno.land/x/jose@v4.14.4/index.ts'
