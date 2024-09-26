@@ -16,8 +16,9 @@ spec:
       {{- include "supabase.functions.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.functions.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/functions/functions.config.yaml") . | sha256sum }}
+      {{- with .Values.functions.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
